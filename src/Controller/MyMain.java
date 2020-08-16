@@ -1,12 +1,13 @@
 package Controller;
 
-import GUI.Registracija;
+import GUI.LekarMainFrame;
+
 
 
 public class MyMain {
 
 	public static void main(String[] args) {
-		Registracija reg = Registracija.getInstance();
+		LekarMainFrame reg = LekarMainFrame.getInstance();
 		reg.setVisible(true);
 		
 	}

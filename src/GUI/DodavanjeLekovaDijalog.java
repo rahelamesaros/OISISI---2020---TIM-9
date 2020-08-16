@@ -1,9 +1,14 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,14 +18,20 @@ import javax.swing.JTextField;
 
 public class DodavanjeLekovaDijalog extends JDialog{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6933833172274454496L;
 	private JTextField sifraTextField;
 	private JTextField imeTextField;
 	private JTextField proizvodjacTextField;
 	private JTextField cenaTextField;
+	private JCheckBox izdavanjeCheckBox;
+	
 	
 	public DodavanjeLekovaDijalog() {
 		super(Registracija.getInstance(), "Dodaj lek", true);
-		setSize(320, 420);
+		setSize(320, 230);
 		setLocationRelativeTo(Registracija.getInstance());
 		JPanel panel = new JPanel();
 		BoxLayout box = new BoxLayout(panel, BoxLayout.Y_AXIS);
@@ -71,6 +82,41 @@ public class DodavanjeLekovaDijalog extends JDialog{
 		cenaPanel.add(Box.createHorizontalStrut(30));
 		panel.add(cenaPanel);
 		panel.add(Box.createVerticalStrut(3));
+		
+		JPanel izdajeSePanel  = new JPanel();
+		izdajeSePanel.setLayout(makeLayout(izdajeSePanel));
+		izdajeSePanel.add(Box.createHorizontalStrut(30));
+		izdajeSePanel.add(new JLabel("Izdaje se recept:*  "));
+		izdajeSePanel.add(Box.createGlue());
+		izdavanjeCheckBox = new JCheckBox();
+		izdajeSePanel.add(izdavanjeCheckBox);
+		izdajeSePanel.add(Box.createGlue());
+		izdajeSePanel.add(Box.createHorizontalStrut(30));
+		panel.add(izdajeSePanel);
+		panel.add(Box.createVerticalStrut(3));
+		
+		//DUGMICI
+		JPanel buttonsPanel =  new JPanel();
+		buttonsPanel.setLayout(makeLayout(buttonsPanel));
+		buttonsPanel.add(Box.createGlue());
+		JButton odustanak = new JButton("Odustani");
+		JButton potvrda = new JButton("Potvrdi");
+		buttonsPanel.add(odustanak);
+		buttonsPanel.add(Box.createHorizontalStrut(20));
+		buttonsPanel.add(potvrda);
+		buttonsPanel.add(Box.createGlue());
+		panel.add(buttonsPanel);
+		panel.add(Box.createVerticalStrut(9));
+		odustanak.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseClicked(e);
+				dispose();
+				
+			}
+			
+		});
 		
 		
 		
